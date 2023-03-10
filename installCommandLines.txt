@@ -1,5 +1,8 @@
 Following this site:
 https://blog.logrocket.com/integrating-firebase-authentication-expo-mobile-app/
+Solution git repo:
+https://github.com/bajcmartinez/expo-with-firebase-auth-demo
+
 
 npm install --global expo-cli
 npm install @react-navigation/native @react-navigation/stack firebase dotenv react-native-elements expo-constants

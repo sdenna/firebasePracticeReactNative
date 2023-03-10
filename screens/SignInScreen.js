@@ -77,14 +77,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    width: '90%',
   },
 
   controls: {
-    flex: 1,
+    //flex: 1,
+    width: '80%',
+    backgroundColor: 'yellow',
   },
 
   control: {
-    marginTop: 10
+    marginTop: 10,
+    backgroundColor: 'lightgrey',
+    
   },
 
   error: {
