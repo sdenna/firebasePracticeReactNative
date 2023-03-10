@@ -1,11 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
-export default function WelcomeScreen() {
-  return (
+// tutorial changed this from a function to a const... not sure why?
+// export default function WelcomeScreen() {
+
+// Tutorial had this in typescript
+// const WelcomeScreen: React.FC<StackScreenProps<any>> = ({ navigation }) => 
+
+export default function WelcomeScreen({navigation}) {
+return (
     <View style={styles.container}>
       <Text>Welcome screen!</Text>
+      <View style={styles.buttons}>
+        <Button title="Sign in" buttonStyle={styles.button} onPress={() => navigation.navigate('Sign In')} />
+        <Button title="Sign up" type="outline" buttonStyle={styles.button} onPress={() => navigation.navigate('Sign Up')} />
+      </View>
+
       <StatusBar style="auto" />
     </View>
   );
