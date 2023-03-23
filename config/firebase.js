@@ -1,7 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
+import { getAuth } from "firebase/auth";
+
 // https://firebase.google.com/docs/web/setup#available-libraries
+
 import 'firebase/auth';
 import Constants from 'expo-constants'; 
 
@@ -17,6 +22,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+// By exporting these references we can import them from a different
+// file.  If only exporting one object, you can use export default
+// If exporting multiple, take out the word default OR use { } notation
+export const db = getFirestore(app);
+export const auth = getAuth();
 
-// note, this line was NOT in the code copied from firebase - but it was in the tutorial
-export default app;

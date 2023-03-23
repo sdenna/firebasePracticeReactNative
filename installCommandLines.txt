@@ -5,8 +5,17 @@ https://github.com/bajcmartinez/expo-with-firebase-auth-demo
 
 
 npm install --global expo-cli
-npm install @react-navigation/native @react-navigation/stack firebase dotenv react-native-elements expo-constants
+npm install @react-navigation/native @react-navigation/stack firebase react-native-elements expo-constants
+
 
 Continuing to now set up firestore:
-https://rnfirebase.io/firestore/usage
-npm add @react-native-firebase/firestore
+https://firebase.google.com/docs/firestore/quickstart#web-version-9
+
+I am using Web Version 9 (modular)
+
+npm install firebase@9.18.0 --save
+
+Add to my firebase.js file
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
