@@ -55,9 +55,12 @@ See http://invertase.link/android for full setup instructions., js engine: herme
 
 
 const addUser = async() => {
-  console.log(db);
+  // try to get the users email address and have their data saved to their 
+  // email or UID
+  console.log(user.email);
+
   try {
-    const docRef = await addDoc(collection(db, "users"), {
+    const docRef = await addDoc(collection(db, user.email), {
       name: userName,
       password: password,
     });
@@ -73,11 +76,11 @@ const addUser = async() => {
         <Text style={styles.button} >Welcome {user?.email}!</Text>
 
         <Button title="Sign Out" style={styles.button} onPress={() => signOut(auth)} />
-        <SelectList 
+        {/* <SelectList 
           setSelected={(val) => setSelected(val)} 
           data={data} 
           save="value"
-        />
+        /> */}
         <TextInput 
           placeholder="name"
           style={styles.button}
