@@ -19,3 +19,13 @@ Add to my firebase.js file
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+For RN paper:
+npm install react-native-paper
+npm install react-native-safe-area-context
+npm install react-native-vector-icons
+
+Wrap your root component in Provider from react-native-paper
+
+// something to check out
+https://callstack.github.io/react-native-paper/docs/guides/theming-with-react-navigation
+

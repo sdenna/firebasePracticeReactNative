@@ -2,7 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TouchableWithoutFeedbackBase, View, } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input, Button } from 'react-native-elements';
+import { Input} from 'react-native-elements';
+import {Button, TextInput} from 'react-native-paper';
 import { StackScreenProps } from '@react-navigation/stack';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -39,9 +40,12 @@ export default function SignUpScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Text>Sign Up screen!</Text>
+      <Text style={styles.titleText}>Sign Up screen!</Text>
       
       {!!value.error && <View style={styles.error}><Text>{value.error}</Text></View>}
+
+
+      {/* Insert TextInput here from react-native-paper */}
 
       <View style={styles.controls}>
         <Input
@@ -56,7 +60,7 @@ export default function SignUpScreen({navigation}) {
         />
 
         <Input
-          placeholder='Password'
+          placeholder='Password2'
           containerStyle={styles.control}
           value={value.password}
           onChangeText={(text) => setValue({ ...value, password: text })}
@@ -66,8 +70,12 @@ export default function SignUpScreen({navigation}) {
             size={16}
           />}
         />
+        {/* https://callstack.github.io/react-native-paper/docs/components/Button/  */}
 
-        <Button title="Sign up" buttonStyle={styles.control} onPress={signUp} />
+        <Button icon="account-plus" mode = "contained"  buttonColor='#990000' 
+                textColor='#dddddd' width='50%' alignSelf='center' onPress={signUp}>
+          Sign up
+        </Button>
       </View>
       <StatusBar style="auto" />
     </View>
@@ -81,19 +89,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '90%',
+   // width: '90%',
   },
 
   controls: {
     //flex: 1,
     width: '80%',
     backgroundColor: 'yellow',
+    margin: 10,
+    alignSelf: 'center',
   },
 
   control: {
     marginTop: 10,
     backgroundColor: 'lightgrey',
-    
+    textColor: "#000"
   },
 
   error: {
@@ -101,5 +111,10 @@ const styles = StyleSheet.create({
     padding: 10,
     color: '#fff',
     backgroundColor: '#D54826FF',
+  },
+
+  titleText: {
+    fontSize: 24,
+    fontWeight: "bold",
   }
 });

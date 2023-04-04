@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
+import {Button} from 'react-native-paper';
 
 // tutorial changed this from a function to a const... not sure why?
 // export default function WelcomeScreen() {
@@ -14,14 +15,29 @@ return (
     <View style={styles.container}>
       <Text>Welcome screen!</Text>
       <View style={styles.buttons}>
-        <Button title="Sign in" buttonStyle={styles.button} onPress={() => navigation.navigate('Sign In')} />
-        <Button title="Sign up please" type="outline" buttonStyle={styles.button} onPress={() => navigation.navigate('Sign Up')} />
+
+      <Button icon="account" mode = "outlined"  textColor='#990000' padding='10' 
+              contentStyle = {styles.buttonStyle}
+                width='50%' alignSelf='center' onPress={() => navigation.navigate('Sign In')}>
+          Sign In
+        </Button>
+
+        <Button icon="account-plus" mode = "outlined"  textColor='#990000' 
+      
+                contentStyle={styles.buttonStyle}
+                width='50%' alignSelf='center' onPress={() => navigation.navigate('Sign Up')}>
+          Sign Up
+        </Button>
+        
+
       </View>
 
       <StatusBar style="auto" />
     </View>
   );
 }
+
+// I want to better style this, but for now, it is fine
 
 const styles = StyleSheet.create({
   container: {
@@ -33,10 +49,17 @@ const styles = StyleSheet.create({
   },
 
   buttons: {
-    flex: 1,
+    
+//    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 50,
+    alignSelf: 'flex-end',
   },
 
-  button: {
-    marginTop: 10
-  }
+  buttonStyle: {
+    height: 50,
+    flexDirection: 'row-reverse',
+   
+  },
+
 });
