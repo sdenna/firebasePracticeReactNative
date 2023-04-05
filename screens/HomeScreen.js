@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View  } from 'react-native';
+import {Button, TextInput} from 'react-native-paper';
 import { useAuthentication } from '../utils/hooks/useAuthentication';
 import { getAuth, signOut } from 'firebase/auth';
 import { SelectList } from 'react-native-dropdown-select-list'
 import {auth,db} from '../config/firebase'; 
   // these were exported so I can access them here
+import globals from '../config/defaultStyles';  
 import colors from '../config/colors';
 
 
@@ -33,25 +35,6 @@ export default function HomeScreen() {
     {key:'7', value:'Drinks'},
 ]
 
-// This is causing an error
-/*
- ReferenceError: Property 'addUser' doesn't exist, js engine: hermes
- ERROR  Invariant Violation: "main" has not been registered. This can happen if:
-* Metro (the local dev server) is run from the wrong folder. Check if Metro is running, stop it and restart it in the current project.
-* A module failed to load due to an error and `AppRegistry.registerComponent` wasn't called., js engine: hermes
-Android Bundling complete 79ms
- ERROR  Error: You attempted to use a firebase module that's not installed on your Android project by calling firebase.app().
-
-Ensure you have:
-
-1) imported the 'io.invertase.firebase.app.ReactNativeFirebaseAppPackage' module in your 'MainApplication.java' file.
-
-2) Added the 'new ReactNativeFirebaseAppPackage()' line inside of the RN 'getPackages()' method list.
-
-See http://invertase.link/android for full setup instructions., js engine: hermes
-
-*/
-
 
 
 const addUser = async() => {
@@ -73,28 +56,73 @@ const addUser = async() => {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.button} >Welcome {user?.email}!</Text>
+        <Text style={globals.titleText} >Welcome {user?.email}!</Text>
 
-        <Button title="Sign Out" style={styles.button} onPress={() => signOut(auth)} />
+        {/* <Button title="Sign Out" style={styles.button} onPress={() => signOut(auth)} /> */}
+
+        <Button 
+         mode = "contained"
+         buttonStyle='colors.primary'
+         marginTop= {10}
+         alignSelf='center'
+         contentStyle={{
+           height: 50,
+           backgroundColor: colors.primary,
+         }}
+         
+         labelStyle=
+           {globals.buttonStyle}
+         width='50%'
+         onPress={() => signOut(auth)}>
+         Sign Out
+        </Button>
+
+
         {/* <SelectList 
           setSelected={(val) => setSelected(val)} 
           data={data} 
           save="value"
         /> */}
-        <TextInput 
-          placeholder="name"
-          style={styles.button}
-          onChangeText={setUserName}/>
 
-        <TextInput 
-          placeholder="password"
-            style={styles.button}
-            onChangeText={setPassword} />
+      <TextInput
+        placeholder="User name"
+        style={globals.textInput}
+        mode="outlined"
+        
+        outlineColor={colors.secondary}
+        activeOutlineColor={colors.primary}
+        onChangeText={setUserName}
+        theme={{ roundness: 16}}
+      />
 
-        <Button 
-          title="Add Data" 
-          style={styles.button} 
-          onPress={addUser} />
+      <TextInput
+        placeholder="Password hint"
+        style={globals.textInput}
+        mode="outlined"
+        outlineColor={colors.secondary}
+        activeOutlineColor={colors.primary}
+        onChangeText={setPassword}
+        theme={{ roundness: 16 }}
+      />
+
+
+      <Button 
+         mode = "contained"
+         buttonStyle='colors.primary'
+         marginTop= {10}
+         alignSelf='center'
+         contentStyle={{
+           height: 50,
+           backgroundColor: colors.primary,
+         }}
+         
+         labelStyle=
+           {globals.buttonStyle}
+         width='50%'
+         onPress={addUser}>
+         Add User
+        </Button>  
+
       
       <StatusBar style="auto" />
     </View>

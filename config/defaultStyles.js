@@ -16,6 +16,7 @@ const globals = StyleSheet.create({
     color: colors.primary,
     fontSize: 20,
     backgroundColor: colors.verylight,
+    width: '50%',
   },
   buttonStyle: {
     color: colors.light,
