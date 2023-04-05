@@ -7,6 +7,8 @@ import {Button, TextInput} from 'react-native-paper';
 import { StackScreenProps } from '@react-navigation/stack';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
+import globals from '../config/defaultStyles';
+import colors from '../config/colors';
 
 const auth = getAuth();
 
@@ -40,40 +42,74 @@ export default function SignUpScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titleText}>Sign Up screen!</Text>
+      <Text style={globals.titleText}>Sign Up screen!</Text>
       
-      {!!value.error && <View style={styles.error}><Text>{value.error}</Text></View>}
+      {!!value.error && <View style={globals.error}><Text>{value.error}</Text></View>}
 
 
       {/* Insert TextInput here from react-native-paper */}
 
       <View style={styles.controls}>
-        <Input
-          placeholder='Email'
-          containerStyle={styles.control}
-          value={value.email}
-          onChangeText={(text) => setValue({ ...value, email: text })}
-          leftIcon={<Icon
-            name='envelope'
-            size={16}
-          />}
-        />
 
-        <Input
-          placeholder='Password2'
-          containerStyle={styles.control}
-          value={value.password}
-          onChangeText={(text) => setValue({ ...value, password: text })}
-          secureTextEntry={true}
-          leftIcon={<Icon
-            name='key'
-            size={16}
-          />}
-        />
+     
+
+      <TextInput
+        placeholder="Email"
+        value={value.email}
+        style={globals.textInput}
+        mode="outlined"
+        outlineColor={colors.secondary}
+        activeOutlineColor={colors.primary}
+        onChangeText={(text) => setValue({ ...value, email: text })}
+        theme={{ roundness: 16 }}
+        left={
+          <TextInput.Icon
+            icon={'email-outline'}
+            iconColor={colors.primary}
+            size={30}
+          />
+        }
+      />
+      
+      <TextInput
+        placeholder="Password"
+        value={value.password}
+        style={globals.textInput}
+        mode="outlined"
+        secureTextEntry
+        outlineColor={colors.secondary}
+        activeOutlineColor={colors.primary}
+        onChangeText={(text) => setValue({ ...  value, password: text })}
+        theme={{ roundness: 16 }}
+        left={
+          <TextInput.Icon
+            icon={'key-outline'}
+            iconColor={colors.primary}
+            size={30}
+          />
+        }
+      /> 
+
+
         {/* https://callstack.github.io/react-native-paper/docs/components/Button/  */}
 
-        <Button icon="account-plus" mode = "contained"  buttonColor='#990000' 
-                textColor='#dddddd' width='50%' alignSelf='center' onPress={signUp}>
+
+      
+        <Button 
+          icon="account-plus-outline" 
+          mode = "contained"
+          buttonStyle='colors.primary'
+          marginTop= {10}
+          alignSelf='center'
+          contentStyle={{
+            height: 50,
+            backgroundColor: colors.primary,
+          }}
+          iconColor='#ff000'
+          labelStyle=
+            {globals.buttonStyle}
+          width='50%'
+          onPress={signUp}>
           Sign up
         </Button>
       </View>
@@ -95,7 +131,6 @@ const styles = StyleSheet.create({
   controls: {
     //flex: 1,
     width: '80%',
-    backgroundColor: 'yellow',
     margin: 10,
     alignSelf: 'center',
   },
@@ -106,15 +141,4 @@ const styles = StyleSheet.create({
     textColor: "#000"
   },
 
-  error: {
-    marginTop: 10,
-    padding: 10,
-    color: '#fff',
-    backgroundColor: '#D54826FF',
-  },
-
-  titleText: {
-    fontSize: 24,
-    fontWeight: "bold",
-  }
 });

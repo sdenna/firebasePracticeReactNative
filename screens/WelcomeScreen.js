@@ -3,6 +3,7 @@ import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-paper';
+import globals from '../config/defaultStyles';
 
 // tutorial changed this from a function to a const... not sure why?
 // export default function WelcomeScreen() {
@@ -13,7 +14,7 @@ import {Button} from 'react-native-paper';
 export default function WelcomeScreen({navigation}) {
 return (
     <View style={styles.container}>
-      <Text>Welcome screen!</Text>
+      <Text style={globals.titleText}>Welcome screen!</Text>
       <View style={styles.buttons}>
 
       <Button icon="account" mode = "outlined"  textColor='#990000' padding='10' 
